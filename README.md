@@ -19,12 +19,12 @@ This script combines the steps stated in [K31793632](https://my.f5.com/manage/s/
 In Quantum, change your working directory and copy pcap files to /sr/<case_number>/working.
 
 ```
-blow@hostname:/sr/00678527/working$ f5ssl-decrypt *.pcap
+blow@hostname:/case/12345678/working$ f5ssl-decrypt *.pcap
 ====================================================================================================
 IMPORTANT: Current working directory must have RW permission otherwise file can't be created
 ====================================================================================================
 
-capture1_00678527.pcap: CREATED -> capture1_00678527.pcap.pms and capture1_00678527_tlsinject.pcap
+capture1.pcap: CREATED -> capture1.pcap.pms and capture1_tlsinject.pcap
 
-capture2_00678527.pcap: CREATED -> capture2_00678527.pcap.pms and capture2_00678527_tlsinject.pcap
+capture2.pcap: CREATED -> capture2.pcap.pms and capture2_tlsinject.pcap
 ```
