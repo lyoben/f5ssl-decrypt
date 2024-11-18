@@ -19,7 +19,7 @@ This script combines the steps stated in [K31793632](https://my.f5.com/manage/s/
 In Quantum, change your working directory and copy pcap files to /sr/<case_number>/working.
 
 ```
-blow@quantum:/sr/00678527/working$ f5ssl-decrypt *.pcap
+blow@hostname:/sr/00678527/working$ f5ssl-decrypt *.pcap
 ====================================================================================================
 IMPORTANT: Current working directory must have RW permission otherwise file can't be created
 ====================================================================================================
