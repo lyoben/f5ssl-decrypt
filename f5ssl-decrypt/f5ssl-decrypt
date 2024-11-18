@@ -1,0 +1,31 @@
+#!/bin/bash
+
+if [ "$#" == 0 ]
+then
+    echo "Usage: f5ssl-decrypt file [file [...]]" >&2
+    exit 1
+fi
+
+echo "===================================================================================================="
+echo "IMPORTANT: Current working directory must have RW permission otherwise file can't be created"
+echo "===================================================================================================="
+echo
+
+while [ "$#" -gt 0 ]
+do
+    pms=$(tshark -r $1 -Y f5ethtrailer.tls.keylog -Tfields -e f5ethtrailer.tls.keylog)
+
+    if [ -z "$pms" ]; then
+        echo $1: f5ethtrailer.tls.keylog is empty, capture command missing '--f5 ssl'?
+	
+	else
+        file=$1
+        echo "$pms" | sed 's/,/\n/g' > ./$file.pms
+        tls_inject_filename=$(echo $file | sed 's/\(.*\)\./\1_tlsinject./')
+        editcap --inject-secrets tls,"$file".pms "$file" "$tls_inject_filename"
+        echo "$file: CREATED -> $file.pms and $tls_inject_filename"
+        
+    fi
+    echo
+    shift
+done
